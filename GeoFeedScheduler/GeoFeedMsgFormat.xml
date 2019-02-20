@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message msgId="GEOFE001" version="000005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FixedLengthStringMessage.xsd">
+	<!-- global field definitions -->
+	<fieldDefinitions>
+		<!-- message header fields-->
+		<defineField name="msgId" length="8" type="String"/>
+		<defineField name="version" length="6" type="String"/>
+		<defineField name="receiver" length="11" type="String">
+			<valid value="ALL"/>
+			<valid value="EDDI2"/>
+		</defineField>
+		<defineField name="ExtractTime" length="26" type="String" format="####-##-##-##.##.##.######"/>
+		<defineField name="PrevExtractTime" length="26" type="String" format="####-##-##-##.##.##.######"/>
+		<defineField name="MessageNumber" length="7" type="Numeric"/>
+		<defineField name="EndMarker" length="1" type="String">
+			<valid value="E"/>
+			<valid value=" "/>
+		</defineField>
+		<defineField name="NumberOfRecords" length="4" type="Numeric"/>
+		<!-- Country layout fields  -->
+		<defineField name="Tag" length="6" type="String">
+			<valid value="TAGA"/>
+			<valid value="TAGB"/>
+			<valid value="TAGC"/>
+			<valid value="TAGD"/>
+			<valid value="TAGE"/>
+			<valid value="TAGX1"/>
+			<valid value="TAGX2"/>
+			<valid value="TAGX3"/>
+			<valid value="TAGX4"/>
+		</defineField>
+		<defineField name="TransactionType" length="1" type="String">
+			<valid value="I"/>
+			<valid value="U"/>
+			<valid value="D"/>
+			<valid value="F"/>
+		</defineField>
+		<defineField name="GEOId" length="13" type="String"/>
+		<defineField name="GEOCode" length="10" type="String"/>
+		<defineField name="RKSTCode" length="8" type="String"/>
+		<defineField name="RKTSCode" length="5" type="String"/>
+		<defineField name="TypeOfLocation" length="35" type="String"/>
+		<defineField name="UppercaseName" length="35" type="String"/>
+		<defineField name="LocationName" length="36" type="String"/>
+		<defineField name="Status" length="10" type="String"/>
+		<defineField name="CodeForTimezone" length="4" type="String"/>
+		<defineField name="DifferenceFromUTCTime" length="4" type="String"/>
+		<defineField name="UppercaseNameForTheTimezone" length="35" type="String"/>
+		<defineField name="NameOfTheTimezone" length="35" type="String"/>
+		<defineField name="DaylightZoneCode" length="4" type="String"/>
+		<defineField name="DaylightTimeDiff" length="4" type="String"/>
+		<defineField name="DaylightSavingFromDate" length="8" type="Date" format="yyyyMMdd"/>
+		<defineField name="DaylightSavingFromTime" length="6" type="Date" format="HHmmss"/>
+		<defineField name="DaylightSavingToDate" length="8" type="Date" format="yyyyMMdd"/>
+		<defineField name="DaylightSavingToTime" length="6" type="Date" format="HHmmss"/>
+		<defineField name="DaylightSavingZoneUppercaseName" length="35" type="String"/>
+		<defineField name="DaylightSavingZoneName" length="35" type="String"/>
+		<defineField name="OmitAreaCode" length="1" type="String">
+			<valid value="Y"/>
+			<valid value="N"/>
+		</defineField>
+		<defineField name="PhoneInPrefix" length="4" type="String"/>
+		<defineField name="PhoneOutPrefix" length="4" type="String"/>
+		<defineField name="TelexInPrefix" length="4" type="String"/>
+		<defineField name="PostcodePredefined" length="1" type="String">
+			<valid value="Y"/>
+			<valid value="N"/>
+		</defineField>
+		<defineField name="PostcodeMandatory" length="1" type="String">
+			<valid value="Y"/>
+			<valid value="N"/>
+		</defineField>
+		<defineField name="PostcodeuniqueInCountry" length="1" type="String">
+			<valid value="Y"/>
+			<valid value="N"/>
+		</defineField>
+		<defineField name="PostcodePrefix" length="2" type="String"/>
+		<defineField name="DialAreaPrefix" length="4" type="String"/>
+		<defineField name="DCDate" length="26" type="Date" format="yyyy-MM-dd-HH.mm.ss.SSS"/>
+		<defineField name="CHDate" length="26" type="Date" format="yyyy-MM-dd-HH.mm.ss.SSS"/>
+		<defineField name="DCUser" length="8" type="String"/>
+		<defineField name="CHUser" length="8" type="String"/>
+		<!-- State / Province layout fields -->
+		<defineField name="FIPSCode" length="4" type="String"/>
+		<defineField name="RKSTCountryCode" length="2" type="String"/>
+		<defineField name="RKTSCountryCode" length="3" type="Numeric"/>
+		<defineField name="CountryGEOId" length="13" type="String"/>
+		<defineField name="CountryName" length="36" type="String"/>
+		<!-- City/Subcity layout fields  -->
+		<defineField name="UNLoCode" length="5" type="String"/>
+		<defineField name="RKCCLocationCode" length="5" type="String"/>
+		<defineField name="Longitude" length="11" type="Numeric"/>
+		<defineField name="Latitude" length="11" type="Numeric"/>
+		<defineField name="CityCode" length="2" type="String"/>
+		<defineField name="CityGEOId" length="13" type="String"/>
+		<defineField name="CityName" length="36" type="String"/>
+		<defineField name="StateCode" length="2" type="String"/>
+		<defineField name="StateGEOId" length="13" type="String"/>
+		<defineField name="StateName" length="36" type="String"/>
+		<defineField name="ContinentCode" length="3" type="String"/>
+		<defineField name="ContinentName" length="14" type="String"/>
+		<defineField name="TimeZone" length="3" type="String"/>
+		<defineField name="PoolCode" length="8" type="String"/>
+		<defineField name="PoolName" length="36" type="String"/>
+		<defineField name="RegionCode" length="3" type="String"/>
+		<defineField name="RegionName" length="14" type="String"/>
+		<defineField name="ValidityDate" length="8" type="String"/>
+		<defineField name="AreaCode" length="3" type="String"/>
+		<defineField name="MetropolitanArea" length="5" type="String"/>
+		<defineField name="Online" length="1" type="String"/>
+		<defineField name="DropNearestCY" length="1" type="String"/>
+		<defineField name="RelatedCY1" length="8" type="String"/>
+		<defineField name="RelatedCY1DistanceKM" length="4" type="Numeric"/>
+		<defineField name="RelatedCY1DistanceInMiles" length="4" type="Numeric"/>
+		<defineField name="RelatedCY2" length="8" type="String"/>
+		<defineField name="RelatedCY2DistanceKM" length="4" type="Numeric"/>
+		<defineField name="RelatedCY2DistanceInMiles" length="4" type="Numeric"/>
+		<defineField name="RelatedCY3" length="8" type="String"/>
+		<defineField name="RelatedCY3DistanceKM" length="4" type="Numeric"/>
+		<defineField name="RelatedCY3DistanceInMiles" length="4" type="Numeric"/>
+		<defineField name="RelatedCFS1" length="8" type="String"/>
+		<defineField name="RelatedCFS1DistanceKM" length="4" type="Numeric"/>
+		<defineField name="RelatedCFS1DistanceInMiles" length="4" type="Numeric"/>
+		<defineField name="RelatedCFS2" length="8" type="String"/>
+		<defineField name="RelatedCFS2DistanceKM" length="4" type="Numeric"/>
+		<defineField name="RelatedCFS2DistanceInMiles" length="4" type="Numeric"/>
+		<defineField name="RelatedCFS3" length="8" type="String"/>
+		<defineField name="RelatedCFS3DistanceKM" length="4" type="Numeric"/>
+		<defineField name="RelatedCFS3DistanceInMiles" length="4" type="Numeric"/>
+		<defineField name="Area" length="1" type="String"/>
+		<defineField name="AMC" length="1" type="String"/>
+		<defineField name="DCC" length="3" type="String"/>
+		<defineField name="DocumentationCenter" length="3" type="String"/>
+		<defineField name="Telex" length="8" type="String"/>
+		<defineField name="Printer1" length="4" type="String"/>
+		<defineField name="Printer2" length="4" type="String"/>
+		<defineField name="FeederPort" length="3" type="String"/>
+		<defineField name="PortFlag" length="1" type="String"/>
+		<defineField name="Overdue" length="2" type="String"/>
+		<defineField name="LineCompany" length="3" type="String"/>
+		<defineField name="PayAtPort" length="1" type="String"/>
+		<defineField name="PayPort" length="3" type="String"/>
+		<defineField name="PortDefinedForCAMIR" length="1" type="String"/>
+		<defineField name="DatePortDefinedForCAMIR" length="8" type="Date" format="yyyyMMdd"/>
+		<defineField name="AllowedRKDSLOPDIPMSK" length="1" type="String">
+			<valid value="Y"/>
+			<valid value=" "/>
+			<valid value="L"/>
+			<valid value="D"/>
+		</defineField>
+		<defineField name="AllowedRKDSLOPDIPSCL" length="1" type="String">
+			<valid value="Y"/>
+			<valid value=" "/>
+			<valid value="L"/>
+			<valid value="D"/>
+		</defineField>
+		<defineField name="AllowedRKDSRECDELMSK" length="2" type="String">
+			<valid value="Y"/>
+			<valid value="N"/>
+			<valid value="R"/>
+			<valid value="D"/>
+			<valid value="C"/>
+			<valid value="F"/>
+			<valid value="A"/>
+			<valid value="B"/>
+			<valid value="L"/>
+			<valid value="E"/>
+			<valid value="G"/>
+			<valid value="H"/>
+			<valid value="I"/>
+			<valid value="K"/>
+			<valid value="M"/>
+			<valid value="O"/>
+		</defineField>
+		<defineField name="AllowedRKDSRECDELSCL" length="1" type="String">
+			<valid value="Y"/>
+			<valid value="N"/>
+			<valid value="R"/>
+			<valid value="D"/>
+			<valid value="C"/>
+			<valid value="F"/>
+			<valid value="A"/>
+			<valid value="B"/>
+			<valid value="L"/>
+			<valid value="E"/>
+			<valid value="G"/>
+			<valid value="H"/>
+			<valid value="I"/>
+			<valid value="K"/>
+			<valid value="M"/>
+			<valid value="O"/>
+		</defineField>
+		<defineField name="CYSupported" length="1" type="String">
+			<valid value="Y"/>
+			<valid value="N"/>
+			<valid value=" "/>
+		</defineField>
+		<defineField name="ValidInRKMSOnly" length="1" type="String">
+			<valid value="X"/>
+			<valid value=" "/>
+		</defineField>
+		<!-- Site layout fields -->
+		<defineField name="Street1" length="36" type="String"/>
+		<defineField name="Street2" length="36" type="String"/>
+		<defineField name="City" length="36" type="String"/>
+		<defineField name="CityNearSiteCode" length="10" type="String"/>
+		<defineField name="CityNearSiteGEOId" length="13" type="String"/>
+		<!-- BDA layout fields -->
+		<defineField name="BDAId" length="13" type="String"/>
+		<defineField name="BDA_NAME" length="40" type="String"/>
+		<defineField name="BDA_CODE" length="10" type="String"/>
+		<defineField name="BDA_TYPE_CODE" length="10" type="String"/>
+		<defineField name="ValidDateFrom" length="10" type="Date" format="yyyy-MM-dd"/>
+		<defineField name="ValidDateTo" length="10" type="Date" format="yyyy-MM-dd"/>
+		<!-- Zipcode layout fields -->
+		<defineField name="PostalAreaId" length="13" type="String"/>
+		<defineField name="ZipCode" length="13" type="String"/>
+		<defineField name="ZipUppercaseName" length="35" type="String"/>
+		<defineField name="ZipName" length="35" type="String"/>
+		<defineField name="GEOParentId" length="13" type="String"/>
+		<!-- Address layout fields -->
+		<defineField name="AddressTypeName" length="50" type="String"/>
+		<defineField name="StreetName" length="36" type="String"/>
+		<defineField name="StreetNumber" length="10" type="String"/>
+		<defineField name="AddressLine2" length="36" type="String"/>
+		<defineField name="AddressLine3" length="36" type="String"/>
+		<defineField name="Phone" length="15" type="String"/>
+		<!-- NB: Address and City both have Telex fields of different lengths, hence the name: AddressTelex -->
+		<defineField name="AddressTelex" length="15" type="String"/>
+		<defineField name="MCSAddr" length="15" type="String"/>
+		<defineField name="SiteId" length="13" type="String"/>
+		<defineField name="PostalId" length="13" type="String"/>
+		<!-- Name Alias layout -->
+		<defineField name="Name" length="35" type="String"/>
+	</fieldDefinitions>
+	<header>
+		<field name="msgId" optional="false"/>
+		<field name="version" optional="false"/>
+		<field name="receiver" optional="false"/>
+		<field name="ExtractTime" optional="false"/>
+		<field name="PrevExtractTime" optional="true"/>
+		<field name="MessageNumber" optional="false"/>
+		<field name="EndMarker" optional="true"/>
+		<field name="NumberOfRecords" optional="false"/>
+	</header>
+	<!-- TAGA for country layout -->
+	<tag name="TAGA" level="1">
+		<field name="Tag" optional="false"/>
+		<field name="TransactionType" optional="false"/>
+		<field name="GEOId" optional="false"/>
+		<field name="GEOCode" optional="false"/>
+		<field name="RKSTCode" optional="false"/>
+		<field name="RKTSCode" optional="false"/>
+		<field name="TypeOfLocation" optional="false">
+			<valid value="COUNTRY"/>
+		</field>
+		<field name="UppercaseName" optional="false"/>
+		<field name="LocationName" optional="false"/>
+		<field name="Status" optional="false"/>
+		<field name="CodeForTimezone" optional="true"/>
+		<field name="DifferenceFromUTCTime" optional="true"/>
+		<field name="UppercaseNameForTheTimezone" optional="true"/>
+		<field name="NameOfTheTimezone" optional="true"/>
+		<field name="DaylightZoneCode" optional="true"/>
+		<field name="DaylightTimeDiff" optional="true"/>
+		<field name="DaylightSavingFromDate" optional="true"/>
+		<field name="DaylightSavingFromTime" optional="true"/>
+		<field name="DaylightSavingToDate" optional="true"/>
+		<field name="DaylightSavingToTime" optional="true"/>
+		<field name="DaylightSavingZoneUppercaseName" optional="true"/>
+		<field name="DaylightSavingZoneName" optional="true"/>
+		<field name="OmitAreaCode" optional="false"/>
+		<field name="PhoneInPrefix" optional="false"/>
+		<field name="PhoneOutPrefix" optional="false"/>
+		<field name="TelexInPrefix" optional="false"/>
+		<field name="PostcodePredefined" optional="false"/>
+		<field name="PostcodeMandatory" optional="false"/>
+		<field name="PostcodeuniqueInCountry" optional="false"/>
+		<field name="PostcodePrefix" optional="true"/>
+		<field name="DialAreaPrefix" optional="true"/>
+		<field name="DCDate" optional="false"/>
+		<field name="CHDate" optional="false"/>
+		<field name="DCUser" optional="false"/>
+		<field name="CHUser" optional="false"/>
+		<child name="TAGX1"/>
+		<child name="TAGX2"/>
+		<child name="TAGX3"/>
+		<child name="TAGX4"/>
+	</tag>
+	<!-- TAGB for state/province layout -->
+	<tag name="TAGB" level="1">
+		<field name="Tag" optional="false"/>
+		<field name="TransactionType" optional="false"/>
+		<field name="GEOId" optional="false"/>
+		<field name="GEOCode" optional="false"/>
+		<field name="FIPSCode" optional="true"/>
+		<field name="TypeOfLocation" optional="false">
+			<valid value="STATE"/>
+			<valid value="PROVINCE"/>
+		</field>
+		<field name="UppercaseName" optional="false"/>
+		<field name="LocationName" optional="false"/>
+		<field name="Status" optional="false"/>
+		<field name="RKSTCountryCode" optional="false"/>
+		<field name="RKTSCountryCode" optional="false"/>
+		<field name="CountryGEOId" optional="false"/>
+		<field name="CountryName" optional="false"/>
+		<field name="CodeForTimezone" optional="true"/>
+		<field name="DifferenceFromUTCTime" optional="true"/>
+		<field name="UppercaseNameForTheTimezone" optional="true"/>
+		<field name="NameOfTheTimezone" optional="true"/>
+		<field name="DaylightZoneCode" optional="true"/>
+		<field name="DaylightTimeDiff" optional="true"/>
+		<field name="DaylightSavingFromDate" optional="true"/>
+		<field name="DaylightSavingFromTime" optional="true"/>
+		<field name="DaylightSavingToDate" optional="true"/>
+		<field name="DaylightSavingToTime" optional="true"/>
+		<field name="DaylightSavingZoneUppercaseName" optional="true"/>
+		<field name="DaylightSavingZoneName" optional="true"/>
+		<field name="DCDate" optional="false"/>
+		<field name="CHDate" optional="false"/>
+		<field name="DCUser" optional="false"/>
+		<field name="CHUser" optional="false"/>
+		<child name="TAGX1"/>
+		<child name="TAGX2"/>
+		<child name="TAGX3"/>
+		<child name="TAGX4"/>
+	</tag>
+	<!-- TAGC for City/Subcity layout -->
+	<tag name="TAGC" level="1">
+		<field name="Tag" optional="false"/>
+		<field name="TransactionType" optional="false"/>
+		<field name="GEOId" optional="false"/>
+		<field name="GEOCode" optional="false"/>
+		<field name="UNLoCode" optional="false"/>
+		<field name="RKSTCode" optional="false"/>
+		<field name="RKTSCode" optional="false"/>
+		<field name="RKCCLocationCode" optional="false"/>
+		<field name="TypeOfLocation" optional="false">
+			<valid value="CITY"/>
+			<valid value="SUBCITY"/>
+		</field>
+		<field name="UppercaseName" optional="false"/>
+		<field name="LocationName" optional="false"/>
+		<field name="Status" optional="false"/>
+		<field name="Longitude" optional="false"/>
+		<field name="Latitude" optional="false"/>
+		<field name="CityCode" optional="true"/>
+		<field name="CityGEOId" optional="true"/>
+		<field name="CityName" optional="true"/>
+		<field name="StateCode" optional="true"/>
+		<field name="StateGEOId" optional="true"/>
+		<field name="StateName" optional="true"/>
+		<field name="RKSTCountryCode" optional="false"/>
+		<field name="RKTSCountryCode" optional="false"/>
+		<field name="CountryGEOId" optional="false"/>
+		<field name="CountryName" optional="false"/>
+		<field name="ContinentCode" optional="false"/>
+		<field name="ContinentName" optional="false"/>
+		<field name="TimeZone" optional="true"/>
+		<field name="CodeForTimezone" optional="true"/>
+		<field name="DifferenceFromUTCTime" optional="true"/>
+		<field name="UppercaseNameForTheTimezone" optional="true"/>
+		<field name="NameOfTheTimezone" optional="true"/>
+		<field name="DaylightZoneCode" optional="true"/>
+		<field name="DaylightTimeDiff" optional="true"/>
+		<field name="DaylightSavingFromDate" optional="true"/>
+		<field name="DaylightSavingFromTime" optional="true"/>
+		<field name="DaylightSavingToDate" optional="true"/>
+		<field name="DaylightSavingToTime" optional="true"/>
+		<field name="DaylightSavingZoneUppercaseName" optional="true"/>
+		<field name="DaylightSavingZoneName" optional="true"/>
+		<field name="PoolCode" optional="true"/>
+		<field name="PoolName" optional="true"/>
+		<field name="RegionCode" optional="true"/>
+		<field name="RegionName" optional="true"/>
+		<field name="ValidityDate" optional="true"/>
+		<field name="AreaCode" optional="true"/>
+		<field name="MetropolitanArea" optional="true"/>
+		<field name="Online" optional="true"/>
+		<field name="DropNearestCY" optional="true"/>
+		<field name="RelatedCY1" optional="true"/>
+		<field name="RelatedCY1DistanceKM" optional="true"/>
+		<field name="RelatedCY1DistanceInMiles" optional="true"/>
+		<field name="RelatedCY2" optional="true"/>
+		<field name="RelatedCY2DistanceKM" optional="true"/>
+		<field name="RelatedCY2DistanceInMiles" optional="true"/>
+		<field name="RelatedCY3" optional="true"/>
+		<field name="RelatedCY3DistanceKM" optional="true"/>
+		<field name="RelatedCY3DistanceInMiles" optional="true"/>
+		<field name="RelatedCFS1" optional="true"/>
+		<field name="RelatedCFS1DistanceKM" optional="true"/>
+		<field name="RelatedCFS1DistanceInMiles" optional="true"/>
+		<field name="RelatedCFS2" optional="true"/>
+		<field name="RelatedCFS2DistanceKM" optional="true"/>
+		<field name="RelatedCFS2DistanceInMiles" optional="true"/>
+		<field name="RelatedCFS3" optional="true"/>
+		<field name="RelatedCFS3DistanceKM" optional="true"/>
+		<field name="RelatedCFS3DistanceInMiles" optional="true"/>
+		<field name="Area" optional="true"/>
+		<field name="AMC" optional="true"/>
+		<field name="DCC" optional="true"/>
+		<field name="DocumentationCenter" optional="true"/>
+		<field name="Telex" optional="true"/>
+		<field name="Printer1" optional="true"/>
+		<field name="Printer2" optional="true"/>
+		<field name="FeederPort" optional="true"/>
+		<field name="PortFlag" optional="false"/>
+		<field name="Overdue" optional="true"/>
+		<field name="LineCompany" optional="true"/>
+		<field name="PayAtPort" optional="true"/>
+		<field name="PayPort" optional="true"/>
+		<field name="PortDefinedForCAMIR" optional="true"/>
+		<field name="DatePortDefinedForCAMIR" optional="true"/>
+		<field name="AllowedRKDSLOPDIPMSK" optional="true"/>
+		<field name="AllowedRKDSLOPDIPSCL" optional="true"/>
+		<field name="AllowedRKDSRECDELMSK" optional="true"/>
+		<field name="AllowedRKDSRECDELSCL" optional="true"/>
+		<field name="CYSupported" optional="true"/>
+		<field name="ValidInRKMSOnly" optional="true"/>
+		<field name="DCDate" optional="false"/>
+		<field name="CHDate" optional="false"/>
+		<field name="DCUser" optional="false"/>
+		<field name="CHUser" optional="false"/>
+		<child name="TAGX1"/>
+		<child name="TAGX2"/>
+		<child name="TAGX3"/>
+		<child name="TAGX4"/>
+	</tag>
+	<!-- TAGD for Site layout -->
+	<tag name="TAGD" level="1">
+		<field name="Tag" optional="false"/>
+		<field name="TransactionType" optional="false"/>
+		<field name="GEOId" optional="false"/>
+		<field name="GEOCode" optional="false"/>
+		<field name="UNLoCode" optional="false"/>
+		<field name="RKSTCode" optional="false"/>
+		<field name="RKTSCode" optional="false"/>
+		<field name="RKCCLocationCode" optional="false"/>
+		<field name="TypeOfLocation" optional="false"/>
+		<field name="UppercaseName" optional="false"/>
+		<field name="LocationName" optional="false"/>
+		<field name="Status" optional="false"/>
+		<field name="Street1" optional="true"/>
+		<field name="Street2" optional="true"/>
+		<field name="City" optional="false"/>
+		<field name="CityNearSiteCode" optional="true"/>
+		<field name="CityNearSiteGEOId" optional="true"/>
+		<field name="StateCode" optional="true"/>
+		<field name="StateGEOId" optional="true"/>
+		<field name="StateName" optional="true"/>
+		<field name="RKSTCountryCode" optional="false"/>
+		<field name="RKTSCountryCode" optional="false"/>
+		<field name="CountryGEOId" optional="false"/>
+		<field name="CountryName" optional="false"/>
+		<field name="PoolCode" optional="true"/>
+		<field name="PoolName" optional="true"/>
+		<field name="RegionCode" optional="true"/>
+		<field name="RegionName" optional="true"/>
+		<field name="ValidityDate" optional="true"/>
+		<field name="AreaCode" optional="true"/>
+		<field name="MetropolitanArea" optional="true"/>
+		<field name="Online" optional="true"/>
+		<field name="DropNearestCY" optional="true"/>
+		<field name="RelatedCY1" optional="true"/>
+		<field name="RelatedCY1DistanceKM" optional="true"/>
+		<field name="RelatedCY1DistanceInMiles" optional="true"/>
+		<field name="RelatedCY2" optional="true"/>
+		<field name="RelatedCY2DistanceKM" optional="true"/>
+		<field name="RelatedCY2DistanceInMiles" optional="true"/>
+		<field name="RelatedCY3" optional="true"/>
+		<field name="RelatedCY3DistanceKM" optional="true"/>
+		<field name="RelatedCY3DistanceInMiles" optional="true"/>
+		<field name="RelatedCFS1" optional="true"/>
+		<field name="RelatedCFS1DistanceKM" optional="true"/>
+		<field name="RelatedCFS1DistanceInMiles" optional="true"/>
+		<field name="RelatedCFS2" optional="true"/>
+		<field name="RelatedCFS2DistanceKM" optional="true"/>
+		<field name="RelatedCFS2DistanceInMiles" optional="true"/>
+		<field name="RelatedCFS3" optional="true"/>
+		<field name="RelatedCFS3DistanceKM" optional="true"/>
+		<field name="RelatedCFS3DistanceInMiles" optional="true"/>
+		<field name="Area" optional="true"/>
+		<field name="AMC" optional="true"/>
+		<field name="DCC" optional="true"/>
+		<field name="DocumentationCenter" optional="true"/>
+		<field name="Telex" optional="true"/>
+		<field name="Printer1" optional="true"/>
+		<field name="Printer2" optional="true"/>
+		<field name="FeederPort" optional="true"/>
+		<field name="Overdue" optional="true"/>
+		<field name="LineCompany" optional="true"/>
+		<field name="PayAtPort" optional="true"/>
+		<field name="PayPort" optional="true"/>
+		<field name="PortDefinedForCAMIR" optional="true"/>
+		<field name="DatePortDefinedForCAMIR" optional="true"/>
+		<field name="AllowedRKDSLOPDIPMSK" optional="true"/>
+		<field name="AllowedRKDSLOPDIPSCL" optional="true"/>
+		<field name="AllowedRKDSRECDELMSK" optional="true"/>
+		<field name="AllowedRKDSRECDELSCL" optional="true"/>
+		<field name="CYSupported" optional="true"/>
+		<field name="ValidInRKMSOnly" optional="true"/>
+		<field name="ContinentCode" optional="false"/>
+		<field name="ContinentName" optional="false"/>
+		<field name="TimeZone" optional="true"/>
+		<field name="CodeForTimezone" optional="true"/>
+		<field name="DifferenceFromUTCTime" optional="true"/>
+		<field name="UppercaseNameForTheTimezone" optional="true"/>
+		<field name="NameOfTheTimezone" optional="true"/>
+		<field name="DaylightZoneCode" optional="true"/>
+		<field name="DaylightTimeDiff" optional="true"/>
+		<field name="DaylightSavingFromDate" optional="true"/>
+		<field name="DaylightSavingFromTime" optional="true"/>
+		<field name="DaylightSavingToDate" optional="true"/>
+		<field name="DaylightSavingToTime" optional="true"/>
+		<field name="DaylightSavingZoneUppercaseName" optional="true"/>
+		<field name="DaylightSavingZoneName" optional="true"/>
+		<field name="DCDate" optional="false"/>
+		<field name="CHDate" optional="false"/>
+		<field name="DCUser" optional="false"/>
+		<field name="CHUser" optional="false"/>
+		<child name="TAGX1"/>
+		<child name="TAGX2"/>
+		<child name="TAGX3"/>
+		<child name="TAGX4"/>
+	</tag>
+	<!-- TAGE for BDA layout -->
+	<tag name="TAGE" level="1">
+		<field name="Tag" optional="false"/>
+		<field name="TransactionType" optional="false"/>
+		<field name="BDAId" optional="false"/>
+		<field name="BDA_NAME" optional="false"/>
+		<field name="BDA_CODE" optional="false"/>
+		<field name="BDA_TYPE_CODE" optional="false"/>
+		<field name="ValidDateFrom" optional="false"/>
+		<field name="ValidDateTo" optional="false"/>
+		<field name="DCDate" optional="false"/>
+		<field name="CHDate" optional="false"/>
+		<field name="DCUser" optional="false"/>
+		<field name="CHUser" optional="false"/>
+		<child name="TAGX1"/>
+		<child name="TAGX2"/>
+		<child name="TAGX3"/>
+		<child name="TAGX4"/>
+	</tag>
+	<!-- TAGX1 for Zipcode layout -->
+	<tag name="TAGX1" level="2">
+		<field name="Tag" optional="false"/>
+		<field name="TransactionType" optional="false"/>
+		<field name="PostalAreaId" optional="false"/>
+		<field name="ZipCode" optional="false"/>
+		<field name="ZipUppercaseName" optional="false"/>
+		<field name="ZipName" optional="false"/>
+		<field name="GEOParentId" optional="false"/>
+		<field name="DCDate" optional="false"/>
+		<field name="CHDate" optional="false"/>
+		<field name="DCUser" optional="false"/>
+		<field name="CHUser" optional="false"/>
+	</tag>
+	<!-- TAGX2 for Address layout -->
+	<tag name="TAGX2" level="2">
+		<field name="Tag" optional="false"/>
+		<field name="TransactionType" optional="false"/>
+		<field name="AddressTypeName" optional="false"/>
+		<field name="StreetName" optional="true"/>
+		<field name="StreetNumber" optional="true"/>
+		<field name="AddressLine2" optional="true"/>
+		<field name="AddressLine3" optional="true"/>
+		<field name="Phone" optional="true"/>
+<!-- NB: Address and City both have Telex fields of different lengths, hence the name: AddressTelex -->
+		<field name="AddressTelex" optional="true"/>
+		<field name="MCSAddr" optional="true"/>
+		<field name="SiteId" optional="false"/>
+		<field name="PostalId" optional="true"/>
+		<field name="DCDate" optional="false"/>
+		<field name="CHDate" optional="false"/>
+		<field name="DCUser" optional="false"/>
+		<field name="CHUser" optional="false"/>
+	</tag>
+	<!-- TAGX3 for BDA layout -->
+	<tag name="TAGX3" level="2">
+		<field name="Tag" optional="false"/>
+		<field name="TransactionType" optional="false"/>
+		<field name="BDAId" optional="false"/>
+		<field name="BDA_NAME" optional="false"/>
+		<field name="BDA_TYPE_CODE" optional="false"/>
+		<field name="ValidDateFrom" optional="false"/>
+		<field name="ValidDateTo" optional="false"/>
+		<field name="GEOId" optional="false"/>
+		<field name="DCDate" optional="false"/>
+		<field name="CHDate" optional="false"/>
+		<field name="DCUser" optional="false"/>
+		<field name="CHUser" optional="false"/>
+	</tag>
+	<!-- TAGX4 for Name Alias layout layout -->
+	<tag name="TAGX4" level="2">
+		<field name="Tag" optional="false"/>
+		<field name="TransactionType" optional="false"/>
+		<field name="Name" optional="false"/>
+		<field name="UppercaseName" optional="false"/>
+		<field name="GEOId" optional="false"/>
+		<field name="DCDate" optional="false"/>
+		<field name="DCUser" optional="false"/>
+	</tag>
+</message>

@@ -1,0 +1,15 @@
+adminServerHost: localhost
+adminServerPort: 9090
+clientUser: admin
+clientPassword: password
+server:
+  port: 8095
+spring:
+  application:
+    name: geoscheduler
+  cloud:
+    config:
+      uri: http://${clientUser}:${clientPassword}@${adminServerHost}:${adminServerPort}/config
+eureka:
+  client:
+    enabled: false
