@@ -1,0 +1,4 @@
+FROM java:8
+EXPOSE 9091
+ADD /target/FeederUI-1.0.0.1-SNAPSHOT.war FeederUI.war
+ENTRYPOINT ["java", "-jar", "FeederUI.jar"] 
