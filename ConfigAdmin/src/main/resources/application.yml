@@ -1,0 +1,51 @@
+server:
+  address: localhost
+  port: 9090
+spring:
+  application:
+    name: adminweb
+  profiles:
+    active: native
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://${server.address}:${server.port}/config}
+      server:
+        git:
+          uri: C:/SUMAN/MCS/Geo/LocationSyncService/config_repo
+        prefix: config
+        native:
+          searchLocations: C:/SUMAN/MCS/Geo/LocationSyncService/config_repo
+  boot:
+    admin:
+      ui:
+        brand: <span>Monitoring and Administration</span>
+        title: Monitoring and Administration
+      context-path: /admin
+  security:
+    user:
+      name: admin
+      password: password
+management:
+  security:
+    enabled: false
+  endpoints:
+    web.exposure.include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://${spring.security.user.name}:${spring.security.user.password}@${server.address}:${server.port}/eureka}
+    registerWithEureka: false
+    fetchRegistry: false
+    registryFetchIntervalSeconds: 5 #added for UI
+  instance:
+    hostname: ${server.address} #added
+    health-check-url-path: /actuator/health #added
+    status-page-url-path: /actuator/info #added
+    leaseRenewalIntervalInSeconds: 10 #added
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+      instanceId : client-${random.uuid}
