@@ -1,0 +1,6 @@
+com\ibm\dndcalculation\DnDFeedVo.class
+com\ibm\dndcalculation\DnDFeedRepo.class
+com\ibm\dndcalculation\DnDApplication.class
+com\ibm\dndcalculation\DndController.class
+com\ibm\dndcalculation\DndCrudController.class
+com\ibm\dndcalculation\DnDFeedEntity.class
